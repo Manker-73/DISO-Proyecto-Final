@@ -1,8 +1,9 @@
-package main.abstracta;
+package main.model;
 
+import main.abstracta.Character;
 import main.enums.World;
 
-public class Player extends Character{
+public class Player extends Character {
     public static final Integer NIVEL_DEF = 1;
     public static final Double XP_DEF = 0.0;
     public static final Double XP_REQ_DEF = 100.0;

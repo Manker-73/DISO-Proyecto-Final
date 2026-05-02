@@ -1,7 +1,7 @@
 package main.abstracta;
 
 import main.enums.World;
-import main.factory.Action;
+import main.actions.Action;
 import main.strategy.EnemyStrategy;
 
 public abstract class Enemy extends Character {
