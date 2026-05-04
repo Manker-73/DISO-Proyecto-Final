@@ -14,6 +14,7 @@ public abstract class Character {
     protected Double resistencia;
     protected Double agilidad;
     protected CharacterState estadoActual;
+    protected Double maxVida;
 
     public Character() {
         this(NOMBRE_DEF, VALOR_DEF, VALOR_DEF, VALOR_DEF, VALOR_DEF, ESTADO_DEF);
@@ -34,6 +35,7 @@ public abstract class Character {
         this.resistencia = resistencia;
         this.agilidad = agilidad;
         this.estadoActual = estadoActual;
+        this.maxVida = vida;
     }
 
     public Boolean estaVivo(){
@@ -78,4 +80,5 @@ public abstract class Character {
     public void setEstadoActual(CharacterState estadoActual) {
         this.estadoActual = estadoActual;
     }
+    public Double getMaxVida(){return maxVida;}
 }
