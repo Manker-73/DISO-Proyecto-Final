@@ -1,5 +1,7 @@
 package main.actions;
+import main.abstracta.Character;
+import main.combat.CombatResult;
 
 public interface Action {
-    void executeAction(Character origen, Character destino);
+    CombatResult executeAction(Character origen, Character destino);
 }
