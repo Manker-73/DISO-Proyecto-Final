@@ -8,6 +8,10 @@ public class QuickAttackDecorator extends ActionDecorator{
     public QuickAttackDecorator(Action accionEnvuelta){
         super(accionEnvuelta);
     }
+
+    if( origen.getAgilidad()>15){
+
+    }
     //@Override
-    //public CombatResult executeAction(main.abstracta.Character origen, Character destino)
+
 }
