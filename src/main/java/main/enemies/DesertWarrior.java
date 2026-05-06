@@ -44,7 +44,7 @@ public class DesertWarrior extends Warrior {
 
     @Override
     public String toString() {
-        return "SeaWarrior | Vida: " + vida + " | Fuerza: " + fuerza + " | Resistencia: " + resistencia + " | Agilidad: " + agilidad;
+        return "DesertWarrior | Vida: " + vida + " | Fuerza: " + fuerza + " | Resistencia: " + resistencia + " | Agilidad: " + agilidad;
     }
 
 }
