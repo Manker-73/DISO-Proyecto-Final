@@ -28,7 +28,7 @@ public abstract class Wizard extends Enemy{
     public void setObjetivo(Character objetivo) {
         this.objetivo = objetivo;
     }
-    
+
     @Override
     public Action nextAction() {
         this.evaluarSituacion();
