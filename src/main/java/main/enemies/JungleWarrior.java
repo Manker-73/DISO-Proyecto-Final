@@ -4,7 +4,7 @@ import main.abstracta.Warrior;
 import main.actions.Action;
 import main.actions.SwordAttack;
 import main.decorator.PoisonedAttackDecorator;
-import main.decorator.QuickAttackDecorator;
+
 import main.enums.World;
 import main.strategy.EnemyStrategy;
 
@@ -37,8 +37,7 @@ public class JungleWarrior extends Warrior {
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
         Action espada = new SwordAttack();
-        Action espadaPotenciada = new QuickAttackDecorator(espada);
-        Action espadaEnvenenada = new PoisonedAttackDecorator(espadaPotenciada);
+        Action espadaEnvenenada = new PoisonedAttackDecorator(espada);
         return espadaEnvenenada;
     }
 

@@ -4,7 +4,6 @@ import main.abstracta.Warrior;
 import main.actions.Action;
 import main.actions.SwordAttack;
 import main.decorator.PowerfulAttackDecorator;
-import main.decorator.QuickAttackDecorator;
 import main.enums.World;
 import main.strategy.EnemyStrategy;
 
@@ -38,8 +37,7 @@ public class DesertWarrior extends Warrior {
     protected Action elegirAccionConcreta(Action estrategia) {
         Action espada = new SwordAttack();
         Action espadaPoderosa = new PowerfulAttackDecorator(espada);
-        Action espadaAgilPoderosa = new QuickAttackDecorator(espadaPoderosa);
-        return espadaAgilPoderosa;
+        return espadaPoderosa;
     }
 
     @Override

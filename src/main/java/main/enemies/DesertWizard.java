@@ -3,20 +3,20 @@ package main.enemies;
 import main.abstracta.Wizard;
 import main.actions.Action;
 import main.actions.SpellCast;
-import main.decorator.QuickAttackDecorator;
+import main.decorator.PowerfulAttackDecorator;
 import main.enums.World;
 import main.strategy.EnemyStrategy;
 
-public class SeaWizard extends Wizard {
+public class DesertWizard extends Wizard {
 
-    public SeaWizard(EnemyStrategy enemyStrategy){
+    public DesertWizard(EnemyStrategy enemyStrategy){
         super(World.JUNGLE, enemyStrategy);
-        this.vida = 30.0;
+        this.vida = 45.0;
         this.fuerza= 40.0;
-        this.resistencia= 80.0;
-        this.agilidad = 40.0;
-        this.maxVida = 30.0;
-        this.nombre = "SeaWizard";
+        this.resistencia= 85.0;
+        this.agilidad = 10.0;
+        this.maxVida = 45.0;
+        this.nombre = "DesertWizard";
 
     }
     @Override
@@ -35,14 +35,14 @@ public class SeaWizard extends Wizard {
 
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
-        Action hechizo = new SpellCast("hechizo Asfixiador");
-        Action hechizoRapido = new QuickAttackDecorator(hechizo);
-        return hechizoRapido;
+        Action hechizo = new SpellCast("hechizo Tormenta de arena");
+        Action hechizoPotenciado = new PowerfulAttackDecorator(hechizo);
+        return hechizoPotenciado;
     }
 
     @Override
     public String toString() {
-        return "SeaWizard | Vida: " + vida + " | Fuerza: " + fuerza + " | Resistencia: " + resistencia + " | Agilidad: " + agilidad;
+        return "DesertWizard | Vida: " + vida + " | Fuerza: " + fuerza + " | Resistencia: " + resistencia + " | Agilidad: " + agilidad;
     }
 
 }
