@@ -10,7 +10,7 @@ import main.strategy.EnemyStrategy;
 public class SeaWizard extends Wizard {
 
     public SeaWizard(EnemyStrategy enemyStrategy){
-        super(World.JUNGLE, enemyStrategy);
+        super(World.SEA, enemyStrategy);
         this.vida = 30.0;
         this.fuerza= 40.0;
         this.resistencia= 80.0;

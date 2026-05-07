@@ -10,7 +10,7 @@ import main.strategy.EnemyStrategy;
 public class DesertWizard extends Wizard {
 
     public DesertWizard(EnemyStrategy enemyStrategy){
-        super(World.JUNGLE, enemyStrategy);
+        super(World.DESERT, enemyStrategy);
         this.vida = 45.0;
         this.fuerza= 40.0;
         this.resistencia= 85.0;
