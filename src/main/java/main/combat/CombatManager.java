@@ -45,7 +45,7 @@ public class CombatManager {
         if(!player.getEstadoActual().canAct()){
             return;
         }
-        // SE PASA EL MENÚ
+        // TODO SE PASA EL MENÚ
         Action accion = turnMenu.elegirAccion(player);
 
         CombatResult resultado = accion.executeAction(player, enemy);

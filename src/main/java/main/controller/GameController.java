@@ -1,6 +1,8 @@
 package main.controller;
 
 import main.abstracta.Enemy;
+import main.abstracta.Warrior;
+import main.abstracta.Wizard;
 import main.combat.CombatManager;
 import main.console.TurnMenu;
 import main.factory.EnemyFactory;
@@ -35,9 +37,9 @@ public class GameController {
     public void resetPartida(Player player, EnemyFactory enemyFactory){
         this.player = player;
         this.enemyFactory = enemyFactory;
-        this.ronda =1;
+        this.ronda = 1;
         this.scanner = new Scanner(System.in);
-        this.player.setVida(100.0);
+        this.enemiesRound.clear();
     }
     public void empezarPartida(){
         while(player.estaVivo()){
@@ -50,10 +52,13 @@ public class GameController {
         System.out.println("\n  Ronda " + ronda);
         var strategy = ronda <= 2 ? new DefensiveStrategy() : new AggressiveStrategy();
         Enemy enemy = enemyFactory.createWarrior(strategy);
+
+        if(enemy instanceof Warrior) ((Warrior)enemy).setObjetivo(player);
+        if(enemy instanceof Wizard)  ((Wizard)enemy).setObjetivo(player);
+
         TurnMenu turnMenu = new TurnMenu(scanner);
         CombatManager cm = new CombatManager(player, enemy, turnMenu);
         boolean ganado = cm.startCombat();
-        finalizarRonda();
         if(ganado){
             player.recibirExperiencia(50.0 * ronda);
             siguienteRonda();

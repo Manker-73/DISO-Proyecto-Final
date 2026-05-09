@@ -1,12 +1,12 @@
 package main.abstracta;
 import main.state.CharacterState;
+import main.state.NormalState;
 
 public abstract class Character {
     public static final String NOMBRE_DEF = "NAME";
     public static final Double VALOR_DEF = 0.0;
 
-    //TODO Cuando se defina CharacterState cambiar el valor por defecto
-    public static final CharacterState ESTADO_DEF = null;
+    public static final CharacterState ESTADO_DEF = new NormalState();
 
     protected String nombre;
     protected Double vida;

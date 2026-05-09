@@ -2,21 +2,19 @@ package main.factory;
 
 import main.abstracta.Warrior;
 import main.abstracta.Wizard;
+import main.enemies.JungleWarrior;
+import main.enemies.JungleWizard;
 import main.strategy.EnemyStrategy;
 
 public class JungleEnemyFactory implements EnemyFactory{
 
     @Override
     public Warrior createWarrior(EnemyStrategy enemyStrategy) {
-        throw new UnsupportedOperationException("Pendiente Persona 3");
-        //TODO
-        //return new JungleWarrior() ;
+        return new JungleWarrior(enemyStrategy) ;
     }
 
     @Override
     public Wizard createWizard(EnemyStrategy enemyStrategy) {
-        throw new UnsupportedOperationException("Pendiente Persona 3");
-        //TODO
-        //return new JungleWizard();
+        return new JungleWizard(enemyStrategy);
     }
 }
