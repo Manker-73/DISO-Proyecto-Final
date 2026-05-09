@@ -2,14 +2,17 @@ package main.combat;
 import main.abstracta.Character;
 import main.abstracta.Enemy;
 import main.actions.Action;
+import main.console.TurnMenu;
 
 public class CombatManager {
     private Character player;
     private Enemy enemy;
+    private TurnMenu turnMenu;
 
-    public CombatManager(Character player, Enemy enemy){
+    public CombatManager(Character player, Enemy enemy, TurnMenu turnMenu){
         this.player = player;
         this.enemy = enemy;
+        this.turnMenu = this.turnMenu;
     }
 
     public boolean startCombat(){
@@ -43,7 +46,7 @@ public class CombatManager {
             return;
         }
         // SE PASA EL MENÚ
-        Action accion = null;
+        Action accion = turnMenu.elegirAccion(player);
 
         CombatResult resultado = accion.executeAction(player, enemy);
 

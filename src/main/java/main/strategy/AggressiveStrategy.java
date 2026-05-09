@@ -1,4 +1,12 @@
 package main.strategy;
 
-public class AggressiveStrategy {
+import main.abstracta.Enemy;
+import main.abstracta.Character;
+import main.actions.Action;
+
+public class AggressiveStrategy implements EnemyStrategy {
+    @Override
+    public Action decidirAction(Enemy enemy, Character character) {
+        return enemy.nextAction();
+    }
 }
