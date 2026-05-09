@@ -53,16 +53,20 @@ public class GameController {
         TurnMenu turnMenu = new TurnMenu(scanner);
         CombatManager cm = new CombatManager(player, enemy, turnMenu);
         boolean ganado = cm.startCombat();
+        finalizarRonda();
         if(ganado){
             player.recibirExperiencia(50.0 * ronda);
             siguienteRonda();
         }
     }
 
-    public void jugarTurno(){}
+    public void jugarTurno(){
+        System.out.println("  Turno en curso...");
+    }
 
-    public void finalizarRonda(){}
-
+    public void finalizarRonda(){
+        System.out.println("  Ronda " + ronda + " finalizada.");
+    }
     public void siguienteRonda(){
         ronda++;
     }
