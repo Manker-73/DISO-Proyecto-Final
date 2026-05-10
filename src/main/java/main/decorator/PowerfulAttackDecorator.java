@@ -9,12 +9,12 @@ public class PowerfulAttackDecorator extends ActionDecorator{
     }
     @Override
     public CombatResult executeAction(Character origen, Character destino){
-        CombatResult resultado = accionEnvuelta.executeAction(origen, destino);
-        if(origen.getFuerza()>=15){
-            double ataquePotenciado = resultado.getDamage() * 1.5;
-            CombatResult resultadoPotenciado= new CombatResult(ataquePotenciado, resultado.getNewState(),resultado.isBlocking());
-            return resultadoPotenciado;
+        if(origen.getFuerza() >= 15){
+            origen.setFuerza(origen.getFuerza() * 1.5);
+            CombatResult resultado = accionEnvuelta.executeAction(origen, destino);
+            origen.setFuerza(origen.getFuerza() / 1.5); // restaurar
+            return resultado;
         }
-        return resultado;
+        return accionEnvuelta.executeAction(origen, destino);
     }
 }

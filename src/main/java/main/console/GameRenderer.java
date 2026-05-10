@@ -34,7 +34,7 @@ public class GameRenderer {
 
 
 
-    public void renderActionResult(String attackerName, CombatResult result, boolean esJugador) {
+    public void renderActionResult(String attackerName, CombatResult result, double dano, boolean esJugador) {
         String color  = esJugador ? ConsoleUI.GREEN : ConsoleUI.RED;
         String icono  = esJugador ? "  ⚔  " : "  👹 ";
 
@@ -42,17 +42,15 @@ public class GameRenderer {
             System.out.println(icono + color + ConsoleUI.BOLD + attackerName
                     + ConsoleUI.RESET + color + " se pone en guardia." + ConsoleUI.RESET);
 
-        } else if (result.getDamage() > 0) {
-
+        } else if (dano > 0) {
             System.out.printf("%s%s%s%s causa %s%.1f de daño!%s%n",
                     icono, color, ConsoleUI.BOLD, attackerName,
-                    ConsoleUI.RESET + color, result.getDamage(), ConsoleUI.RESET);
+                    ConsoleUI.RESET + color, dano, ConsoleUI.RESET);
 
         } else {
             System.out.println(icono + color + ConsoleUI.BOLD + attackerName
                     + ConsoleUI.RESET + color + " actúa sin causar daño." + ConsoleUI.RESET);
         }
-
 
         if (result.getNewState() != null) {
             try {
