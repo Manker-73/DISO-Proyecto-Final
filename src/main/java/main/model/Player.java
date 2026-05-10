@@ -3,6 +3,7 @@ package main.model;
 import main.abstracta.Character;
 import main.console.ConsoleUI;
 import main.enums.World;
+import main.state.NormalState;
 
 public class Player extends Character {
     public static final Integer NIVEL_DEF = 1;
@@ -53,6 +54,7 @@ public class Player extends Character {
 
         this.maxVida = this.fuerza + this.resistencia + this.agilidad;
         this.vida = this.maxVida;
+        this.estadoActual = new NormalState();
 
         System.out.println(ConsoleUI.GREEN + ConsoleUI.BOLD
                 + "\n  ¡SUBISTE AL NIVEL " + this.nivel + "!"

@@ -63,12 +63,6 @@ public class ConsoleUI {
         gc.resetPartida(player, factory);
         gc.empezarPartida();
 
-
-
-
-
-
-
         int puntuacion = player.getNivel() * 100;
         scoreManager.saveScore(player.getNombre(), puntuacion);
 
