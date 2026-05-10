@@ -3,6 +3,7 @@ package main.abstracta;
 import main.enums.World;
 import main.actions.Action;
 import main.strategy.EnemyStrategy;
+import main.state.NormalState;
 
 public abstract class Enemy extends Character {
 
@@ -14,6 +15,7 @@ public abstract class Enemy extends Character {
         super();
         this.world = world;
         this.enemyStrategy = enemyStrategy;
+        this.estadoActual = new NormalState();
     }
 
     public abstract Action nextAction();

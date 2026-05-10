@@ -10,14 +10,12 @@ public class QuickAttackDecorator extends ActionDecorator{
         super(accionEnvuelta);
     }
     public CombatResult executeAction(Character origen, Character destino) {
-        CombatResult resultadoAtaqueAgil1 = accionEnvuelta.executeAction(origen, destino);
-        if (origen.getAgilidad() >= 15) {
-            CombatResult resultadoAtaqueAgil2 = accionEnvuelta.executeAction(origen, destino);
-
-            double dañoTotal = resultadoAtaqueAgil1.getDamage() + resultadoAtaqueAgil2.getDamage();
-            CombatResult resultadoAtaquesAgiles = new CombatResult(dañoTotal, resultadoAtaqueAgil1.getNewState(),resultadoAtaqueAgil1.isBlocking());
-            return resultadoAtaquesAgiles;
+        if(origen.getAgilidad() >= 15){
+            origen.setFuerza(origen.getFuerza() * 2);
+            CombatResult resultado = accionEnvuelta.executeAction(origen, destino);
+            origen.setFuerza(origen.getFuerza() / 2);
+            return resultado;
         }
-        return resultadoAtaqueAgil1;
+        return accionEnvuelta.executeAction(origen, destino);
     }
 }

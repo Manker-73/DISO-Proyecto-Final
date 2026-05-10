@@ -11,11 +11,11 @@ public class SeaWizard extends Wizard {
 
     public SeaWizard(EnemyStrategy enemyStrategy){
         super(World.SEA, enemyStrategy);
-        this.vida = 30.0;
-        this.fuerza= 40.0;
-        this.resistencia= 80.0;
-        this.agilidad = 40.0;
-        this.maxVida = 30.0;
+        this.vida = 70.0;
+        this.fuerza = 18.0;
+        this.resistencia = 12.0;
+        this.agilidad = 14.0;
+        this.maxVida = 70.0;
         this.nombre = "SeaWizard";
 
     }

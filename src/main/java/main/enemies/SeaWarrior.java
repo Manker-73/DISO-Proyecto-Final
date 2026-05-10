@@ -11,11 +11,11 @@ public class SeaWarrior extends Warrior {
 
     public SeaWarrior(EnemyStrategy enemyStrategy){
         super(World.SEA, enemyStrategy);
-        this.vida = 50.0;
-        this.fuerza= 40.0;
-        this.resistencia= 80.0;
-        this.agilidad = 20.0;
-        this.maxVida = 50.0;
+        this.vida = 100.0;
+        this.fuerza = 20.0;
+        this.resistencia = 15.0;
+        this.agilidad = 10.0;
+        this.maxVida = 100.0;
         this.nombre = "SeaWarrior";
 
     }

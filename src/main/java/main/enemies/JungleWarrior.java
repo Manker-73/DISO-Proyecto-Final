@@ -12,11 +12,11 @@ public class JungleWarrior extends Warrior {
 
     public JungleWarrior(EnemyStrategy enemyStrategy){
         super(World.JUNGLE, enemyStrategy);
-        this.vida = 70.0;
-        this.fuerza= 30.0;
-        this.resistencia= 80.0;
-        this.agilidad = 90.0;
-        this.maxVida = 70.0;
+        this.vida = 80.0;
+        this.fuerza = 15.0;
+        this.resistencia = 10.0;
+        this.agilidad = 12.0;
+        this.maxVida = 80.0;
         this.nombre = "JungleWarrior";
 
     }

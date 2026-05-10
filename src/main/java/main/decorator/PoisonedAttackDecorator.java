@@ -11,12 +11,9 @@ public class PoisonedAttackDecorator extends ActionDecorator {
     }
 
     public CombatResult executeAction(Character origen, Character destino) {
-        CombatResult resultado= accionEnvuelta.executeAction(origen,destino);
+        CombatResult resultado = accionEnvuelta.executeAction(origen, destino);
         PoisonedState poisonEstado = new PoisonedState();
         destino.setEstadoActual(poisonEstado);
-        CombatResult resultadoAtaque= new CombatResult(resultado.getDamage(), poisonEstado, resultado.isBlocking());
-
-
-        return resultadoAtaque;
+        return new CombatResult(poisonEstado, resultado.isBlocking());
     }
 }

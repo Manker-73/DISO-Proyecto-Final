@@ -24,6 +24,7 @@ public class Player extends Character {
         this.nivel = nivel;
         this.experienciaActual = XP_DEF;
         this.experienciaNecesaria = XP_REQ_DEF;
+        this.vida = 100.0;
 
     }
 
@@ -44,6 +45,11 @@ public class Player extends Character {
         setNivel(getNivel()+1);
         setExperienciaActual(getExperienciaActual()-getExperienciaNecesaria());
         setExperienciaNecesaria(getExperienciaNecesaria()*1.5);
+    }
+
+    public void inicializar(){
+        this.vida = this.fuerza + this.resistencia*2.0 + this.agilidad;
+        this.maxVida = this.vida;
     }
 
     public World getWorld() {

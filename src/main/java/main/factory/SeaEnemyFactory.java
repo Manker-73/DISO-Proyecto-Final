@@ -2,21 +2,19 @@ package main.factory;
 
 import main.abstracta.Warrior;
 import main.abstracta.Wizard;
+import main.enemies.SeaWarrior;
+import main.enemies.SeaWizard;
 import main.strategy.EnemyStrategy;
 
 public class SeaEnemyFactory implements EnemyFactory{
 
     @Override
     public Warrior createWarrior(EnemyStrategy enemyStrategy) {
-        throw new UnsupportedOperationException("Pendiente Persona 3");
-        //TODO
-        //return new SeaWarrior() ;
+        return new SeaWarrior(enemyStrategy) ;
     }
 
     @Override
     public Wizard createWizard(EnemyStrategy enemyStrategy) {
-        throw new UnsupportedOperationException("Pendiente Persona 3");
-        //TODO
-        //return new SeaWizard();
+        return new SeaWizard(enemyStrategy);
     }
 }

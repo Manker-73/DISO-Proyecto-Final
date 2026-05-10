@@ -6,6 +6,6 @@ public class Heal implements Action{
     @Override
     public CombatResult executeAction(Character origen, Character destino) {
         origen.setVida(origen.getVida() + 15);
-        return new CombatResult(0, null, false);
+        return new CombatResult(null, false);
     }
 }

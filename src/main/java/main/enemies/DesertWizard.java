@@ -11,11 +11,11 @@ public class DesertWizard extends Wizard {
 
     public DesertWizard(EnemyStrategy enemyStrategy){
         super(World.DESERT, enemyStrategy);
-        this.vida = 45.0;
-        this.fuerza= 40.0;
-        this.resistencia= 85.0;
-        this.agilidad = 10.0;
-        this.maxVida = 45.0;
+        this.vida = 90.0;
+        this.fuerza = 22.0;
+        this.resistencia = 16.0;
+        this.agilidad = 12.0;
+        this.maxVida = 90.0;
         this.nombre = "DesertWizard";
 
     }
