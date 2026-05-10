@@ -2,7 +2,7 @@ package main.enemies;
 
 import main.abstracta.Wizard;
 import main.actions.Action;
-import main.actions.SpellCast;
+import main.actions.Attack;
 import main.decorator.PoisonedAttackDecorator;
 import main.enums.World;
 import main.strategy.EnemyStrategy;
@@ -35,7 +35,7 @@ public class JungleWizard extends Wizard {
 
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
-        Action hechizo = new SpellCast("hechizo Savia tóxica");
+        Action hechizo = new Attack();
         Action hechizoVeneno = new PoisonedAttackDecorator(hechizo);
         return hechizoVeneno;
     }
