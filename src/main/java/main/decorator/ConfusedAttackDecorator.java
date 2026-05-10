@@ -5,8 +5,8 @@ import main.actions.Action;
 import main.combat.CombatResult;
 
 
-public class QuickAttackDecorator extends ActionDecorator{
-    public QuickAttackDecorator(Action accionEnvuelta){
+public class ConfusedAttackDecorator extends ActionDecorator{
+    public ConfusedAttackDecorator(Action accionEnvuelta){
         super(accionEnvuelta);
     }
     public CombatResult executeAction(Character origen, Character destino) {

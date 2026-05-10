@@ -3,8 +3,8 @@ import main.abstracta.Character;
 import main.actions.Action;
 import main.combat.CombatResult;
 
-public class PowerfulAttackDecorator extends ActionDecorator{
-    public PowerfulAttackDecorator(Action accionEnvuelta){
+public class ParalyzedAttackDecorator extends ActionDecorator{
+    public ParalyzedAttackDecorator(Action accionEnvuelta){
         super(accionEnvuelta);
     }
     @Override

@@ -29,8 +29,7 @@ public class JungleWarrior extends Warrior {
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
         Action espada = new Attack();
-        Action espadaEnvenenada = new PoisonedAttackDecorator(espada);
-        return espadaEnvenenada;
+        return new PoisonedAttackDecorator(espada);
     }
 
     @Override

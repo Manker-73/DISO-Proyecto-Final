@@ -3,7 +3,7 @@ package main.enemies;
 import main.abstracta.Warrior;
 import main.actions.Action;
 import main.actions.Attack;
-import main.decorator.PowerfulAttackDecorator;
+import main.decorator.ParalyzedAttackDecorator;
 import main.enums.World;
 import main.strategy.EnemyStrategy;
 
@@ -27,8 +27,7 @@ public class DesertWarrior extends Warrior {
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
         Action espada = new Attack();
-        Action espadaPoderosa = new PowerfulAttackDecorator(espada);
-        return espadaPoderosa;
+        return new ParalyzedAttackDecorator(espada);
     }
 
     @Override

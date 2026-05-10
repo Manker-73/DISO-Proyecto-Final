@@ -27,8 +27,7 @@ public class JungleWizard extends Wizard {
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
         Action hechizo = new Attack();
-        Action hechizoVeneno = new PoisonedAttackDecorator(hechizo);
-        return hechizoVeneno;
+        return new PoisonedAttackDecorator(hechizo);
     }
 
     @Override

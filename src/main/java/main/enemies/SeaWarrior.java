@@ -3,7 +3,7 @@ package main.enemies;
 import main.abstracta.Warrior;
 import main.actions.Action;
 import main.actions.Attack;
-import main.decorator.PowerfulAttackDecorator;
+import main.decorator.ConfusedAttackDecorator;
 import main.enums.World;
 import main.strategy.EnemyStrategy;
 
@@ -28,8 +28,7 @@ public class SeaWarrior extends Warrior {
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
         Action espada = new Attack();
-        Action espadaDecorada = new PowerfulAttackDecorator(espada);
-        return espadaDecorada;
+        return new ConfusedAttackDecorator(espada);
     }
 
     @Override
