@@ -7,7 +7,7 @@ import main.strategy.EnemyStrategy;
 public abstract class Warrior extends Enemy{
     public static final Integer ALCANCE_DEF = 2;
 
-    private Integer alcance;
+    private final Integer alcance;
 
     protected Character objetivo;
 
@@ -33,13 +33,11 @@ public abstract class Warrior extends Enemy{
     public Action nextAction() {
         Action estrategia= this.consultarEstrategia();
         Action elegida =this.elegirAccionConcreta(estrategia);
-        Action ultimaAccion= this.aplicarModificadores(elegida);
-        return ultimaAccion;
+        return this.aplicarModificadores(elegida);
     }
 
     protected Action consultarEstrategia(){
-        Action action= enemyStrategy.decidirAction(this, objetivo);
-        return action;
+        return enemyStrategy.decidirAction(this, objetivo);
     }
     protected Action aplicarModificadores(Action accion){
         return accion;

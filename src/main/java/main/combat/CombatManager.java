@@ -10,10 +10,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CombatManager {
 
-    private GameRenderer gameRenderer;
-    private Character player;
-    private Enemy enemy;
-    private TurnMenu turnMenu;
+    private final GameRenderer gameRenderer;
+    private final Character player;
+    private final Enemy enemy;
+    private final TurnMenu turnMenu;
     private boolean jugadorBloqueando;
     private boolean jugadorHuyo;
 
@@ -90,7 +90,7 @@ public class CombatManager {
         Action accion = enemy.nextAction();
         CombatResult resultado = accion.executeAction(enemy, player);
 
-        double dano = 0;
+        double dano;
         if(jugadorBloqueando){
             dano = Math.max(0, enemy.getFuerza() - player.getResistencia() * 0.5)
                     * ThreadLocalRandom.current().nextDouble(0.8,1.0);
