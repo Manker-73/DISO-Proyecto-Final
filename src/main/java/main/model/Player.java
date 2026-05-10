@@ -1,6 +1,7 @@
 package main.model;
 
 import main.abstracta.Character;
+import main.console.ConsoleUI;
 import main.enums.World;
 
 public class Player extends Character {
@@ -42,9 +43,21 @@ public class Player extends Character {
     }
 
     private void subirNivel(){
-        setNivel(getNivel()+1);
-        setExperienciaActual(getExperienciaActual()-getExperienciaNecesaria());
-        setExperienciaNecesaria(getExperienciaNecesaria()*1.5);
+        setNivel(getNivel() + 1);
+        setExperienciaActual(getExperienciaActual() - getExperienciaNecesaria());
+        setExperienciaNecesaria(getExperienciaNecesaria() * 1.5);
+
+        this.fuerza += 5;
+        this.resistencia += 3;
+        this.agilidad += 2;
+
+        this.maxVida = this.fuerza + this.resistencia + this.agilidad;
+        this.vida = this.maxVida;
+
+        System.out.println(ConsoleUI.GREEN + ConsoleUI.BOLD
+                + "\n  ¡SUBISTE AL NIVEL " + this.nivel + "!"
+                + "\n  Stats aumentadas. Vida restaurada completamente."
+                + ConsoleUI.RESET);
     }
 
     public void inicializar(){

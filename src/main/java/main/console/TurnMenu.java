@@ -2,7 +2,7 @@ package main.console;
 
 import main.abstracta.Character;
 import main.actions.Action;
-import main.actions.SwordAttack;
+import main.actions.Attack;
 import main.actions.ShieldBlock;
 import main.actions.Heal;
 import main.actions.Flee;
@@ -59,11 +59,11 @@ public class TurnMenu {
 
     private Action buildAction(int opcion) {
         return switch (opcion) {
-            case 1 -> new SwordAttack();
+            case 1 -> new Attack();
             case 2 -> new ShieldBlock();
             case 3 -> new Heal();
             case 4 -> new Flee();
-            default -> new SwordAttack();
+            default -> new Attack();
         };
     }
 
