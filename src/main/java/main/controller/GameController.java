@@ -60,7 +60,6 @@ public class GameController {
     public void empezarRonda(){
         System.out.println("\n  Ronda " + ronda);
 
-        // Dificultad progresiva cada 3 rondas
         int nivelDificultad = (ronda - 1) / 3;
         double multiplicador = 1.0 + (nivelDificultad * 0.3);
 
@@ -77,7 +76,6 @@ public class GameController {
             enemy = enemyFactory.createWarrior(strategy);
         }
 
-        // Aplicar multiplicador de dificultad
         enemy.setFuerza(enemy.getFuerza() * multiplicador);
         enemy.setResistencia(enemy.getResistencia() * multiplicador);
         enemy.setVida(enemy.getVida() * multiplicador);
@@ -90,7 +88,7 @@ public class GameController {
         CombatManager cm = new CombatManager(player, enemy, turnMenu);
 
         if(cm.startCombat()){
-            player.recibirExperiencia(50.0 * ronda * multiplicador);
+            player.recibirExperiencia(ronda * Math.random()*10);
             finalizarRonda();
             siguienteRonda();
 

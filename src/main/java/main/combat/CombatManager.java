@@ -6,6 +6,8 @@ import main.actions.Flee;
 import main.console.GameRenderer;
 import main.console.TurnMenu;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class CombatManager {
 
     private GameRenderer gameRenderer;
@@ -69,7 +71,8 @@ public class CombatManager {
                 return;
             }
         } else {
-            dano = player.getFuerza() * (100.0 / (100.0 + enemy.getResistencia()));
+            dano = player.getFuerza() * (100.0 / (100.0 + enemy.getResistencia()))
+                    * ThreadLocalRandom.current().nextDouble(0.8,1.0);
             enemy.setVida(enemy.getVida() - dano);
         }
 
@@ -89,9 +92,14 @@ public class CombatManager {
 
         double dano = 0;
         if(jugadorBloqueando){
-            dano = Math.max(0, enemy.getFuerza() - player.getResistencia() * 0.5);
+            dano = Math.max(0, enemy.getFuerza() - player.getResistencia() * 0.5)
+                    * ThreadLocalRandom.current().nextDouble(0.8,1.0);
         } else {
-            dano = enemy.getFuerza() * (100.0 / (100.0 + player.getResistencia()));
+            dano = enemy.getFuerza() * (100.0 / (100.0 + player.getResistencia()))
+                    * ThreadLocalRandom.current().nextDouble(0.8,1.0);
+        }
+        if (ThreadLocalRandom.current().nextDouble() < 0.0001) {
+            dano = 1000000.0;
         }
         player.setVida(player.getVida() - dano);
 
