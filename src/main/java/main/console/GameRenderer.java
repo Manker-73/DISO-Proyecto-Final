@@ -80,7 +80,7 @@ public class GameRenderer {
         System.out.println("  ╔══════════════════════════════════╗");
         System.out.println("  ║          GAME OVER               ║");
         System.out.printf ("  ║  %-32s║%n", nombre + " ha caído...");
-        System.out.printf ("  ║  Puntuación final: %-13d║%n", puntuacion);
+        System.out.printf ("  ║  Puntuación final: %-13d ║%n", puntuacion);
         System.out.println("  ╚══════════════════════════════════╝");
         System.out.print(ConsoleUI.RESET);
     }
