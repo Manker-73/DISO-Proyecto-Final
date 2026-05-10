@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class CharacterCreator {
 
-    private static final Double PUNTOS_TOTALES = 30.0;
+    private static final Double PUNTOS_TOTALES = 150.0;
     private static final Double MIN_ATR        = 5.0;
-    private static final Double MAX_ATR        = 20.0;
+    private static final Double MAX_ATR        = 70.0;
 
     private final Scanner scanner;
 

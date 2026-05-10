@@ -47,6 +47,11 @@ public class Player extends Character {
         setExperienciaNecesaria(getExperienciaNecesaria()*1.5);
     }
 
+    public void inicializar(){
+        this.vida = this.fuerza + this.resistencia*2.0 + this.agilidad;
+        this.maxVida = this.vida;
+    }
+
     public World getWorld() {
         return world;
     }

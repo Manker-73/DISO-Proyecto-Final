@@ -41,9 +41,10 @@ public class GameController {
         this.ronda = 1;
         this.scanner = new Scanner(System.in);
         this.enemiesRound.clear();
-       // System.out.println("DEBUG vida: " + this.player.getVida());
+        player.inicializar();
     }
     public void empezarPartida(){
+        player.inicializar();
         while(player.estaVivo()){
             empezarRonda();
         }
@@ -56,11 +57,13 @@ public class GameController {
         enemy.setObjetivo(player);
         TurnMenu turnMenu = new TurnMenu(scanner);
         CombatManager cm = new CombatManager(player, enemy, turnMenu);
-        finalizarRonda();
+
         if(cm.startCombat()){
             player.recibirExperiencia(50.0 * ronda);
+            finalizarRonda();
             siguienteRonda();
         }
+
     }
 
     public void jugarTurno(){

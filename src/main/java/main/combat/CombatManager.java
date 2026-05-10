@@ -50,10 +50,10 @@ public class CombatManager {
 
         CombatResult resultado = accion.executeAction(player, enemy);
 
-        double dano = resultado.getDamage() * CombatCalculator.getInstance().calculateDamage(player, enemy);
+        double dano = CombatCalculator.getInstance().calculateDamage(player, enemy);
         enemy.setVida(enemy.getVida() - dano);
 
-        if(enemy.getEstadoActual().isReplaceable()){
+        if(enemy.getEstadoActual().isReplaceable()&& resultado.getNewState() != null){
             enemy.setEstadoActual(resultado.getNewState());
         }
     }
@@ -70,11 +70,11 @@ public class CombatManager {
             double block = CombatCalculator.getInstance().calculateBlock(player);
             dano = resultado.getDamage() * (CombatCalculator.getInstance().calculateDamage(enemy, player) - block);
         } else{
-            dano = resultado.getDamage() * CombatCalculator.getInstance().calculateDamage(enemy, player);
+            dano = CombatCalculator.getInstance().calculateDamage(enemy, player);
         }
         player.setVida(player.getVida() - dano);
 
-        if(player.getEstadoActual().isReplaceable()){
+        if(player.getEstadoActual().isReplaceable()&& resultado.getNewState() != null){
             player.setEstadoActual(resultado.getNewState());
         }
     }
