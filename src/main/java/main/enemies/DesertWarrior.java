@@ -11,11 +11,11 @@ public class DesertWarrior extends Warrior {
 
     public DesertWarrior(EnemyStrategy enemyStrategy){
         super(World.DESERT, enemyStrategy);
-        this.vida = 90.0;
-        this.fuerza= 55.0;
-        this.resistencia= 95.0;
-        this.agilidad = 90.0;
-        this.maxVida = 90.0;
+        this.vida = 120.0;
+        this.fuerza = 25.0;
+        this.resistencia = 20.0;
+        this.agilidad = 18.0;
+        this.maxVida = 120.0;
         this.nombre = "DesertWarrior";
 
     }

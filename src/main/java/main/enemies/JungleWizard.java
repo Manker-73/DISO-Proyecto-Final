@@ -11,11 +11,11 @@ public class JungleWizard extends Wizard {
 
     public JungleWizard(EnemyStrategy enemyStrategy){
         super(World.JUNGLE, enemyStrategy);
-        this.vida = 50.0;
-        this.fuerza= 20.0;
-        this.resistencia= 50.0;
-        this.agilidad = 10.0;
-        this.maxVida = 50.0;
+        this.vida = 60.0;
+        this.fuerza = 12.0;
+        this.resistencia = 8.0;
+        this.agilidad = 8.0;
+        this.maxVida = 60.0;
         this.nombre = "JungleWizard";
 
     }
