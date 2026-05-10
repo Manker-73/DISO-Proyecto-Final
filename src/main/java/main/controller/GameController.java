@@ -5,11 +5,14 @@ import main.abstracta.Warrior;
 import main.abstracta.Wizard;
 import main.abstracta.Warrior;
 import main.combat.CombatManager;
+import main.console.GameRenderer;
 import main.console.TurnMenu;
 import main.factory.EnemyFactory;
 import main.model.Player;
 import main.strategy.AggressiveStrategy;
 import main.strategy.DefensiveStrategy;
+import main.strategy.EnemyStrategy;
+import main.strategy.RandomStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +25,12 @@ public class GameController {
     private EnemyFactory enemyFactory;
     private Scanner scanner;
     private int ronda;
+    private GameRenderer gameRenderer;
 
     private GameController(){
         enemiesRound = new ArrayList<Enemy>();
         this.ronda = 1;
+        gameRenderer = new GameRenderer();
     }
 
     public static GameController getInstance(){
@@ -53,8 +58,23 @@ public class GameController {
 
     public void empezarRonda(){
         System.out.println("\n  Ronda " + ronda);
-        Warrior enemy = enemyFactory.createWarrior(new AggressiveStrategy());
-        enemy.setObjetivo(player);
+
+        EnemyStrategy strategy = ronda <= 2
+                ? new DefensiveStrategy()
+                : ronda <= 4
+                  ? new AggressiveStrategy()
+                  : new RandomStrategy();
+
+        Enemy enemy;
+        if(ronda % 2 == 0){
+            enemy = enemyFactory.createWizard(strategy);
+        } else {
+            enemy = enemyFactory.createWarrior(strategy);
+        }
+
+        if(enemy instanceof Warrior) ((Warrior)enemy).setObjetivo(player);
+        if(enemy instanceof Wizard)  ((Wizard)enemy).setObjetivo(player);
+
         TurnMenu turnMenu = new TurnMenu(scanner);
         CombatManager cm = new CombatManager(player, enemy, turnMenu);
 
@@ -63,7 +83,6 @@ public class GameController {
             finalizarRonda();
             siguienteRonda();
         }
-
     }
 
     public void jugarTurno(){
@@ -71,13 +90,13 @@ public class GameController {
     }
 
     public void finalizarRonda(){
-        System.out.println("  Ronda " + ronda + " finalizada.");
+        gameRenderer.renderVictory(ronda, player.getNivel() * 100);
     }
     public void siguienteRonda(){
         ronda++;
     }
 
     public void terminarPartida(){
-        System.out.println("\n  Partida terminada. Nivel alcanzado: " + player.getNivel());
+        gameRenderer.renderGameOver(player.getNombre(), player.getNivel() * 100);
     }
 }

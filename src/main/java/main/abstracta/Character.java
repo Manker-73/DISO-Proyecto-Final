@@ -39,7 +39,7 @@ public abstract class Character {
     }
 
     public Boolean estaVivo(){
-        return this.vida.compareTo(0.0) > 0;
+        return this.vida > 0;
     }
 
     public abstract String toString();

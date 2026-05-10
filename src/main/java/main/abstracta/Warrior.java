@@ -31,7 +31,6 @@ public abstract class Warrior extends Enemy{
 
     @Override
     public Action nextAction() {
-        this.evaluarSituacion();
         Action estrategia= this.consultarEstrategia();
         Action elegida =this.elegirAccionConcreta(estrategia);
         Action ultimaAccion= this.aplicarModificadores(elegida);
@@ -45,8 +44,6 @@ public abstract class Warrior extends Enemy{
     protected Action aplicarModificadores(Action accion){
         return accion;
     }
-
-    protected abstract void evaluarSituacion();
 
     protected abstract Action elegirAccionConcreta(Action estrategia);
 }

@@ -25,15 +25,6 @@ public class JungleWizard extends Wizard {
     }
 
     @Override
-    protected void evaluarSituacion() {
-        if (objetivo.getVida() >= 30) {
-            System.out.println("Objetivo con vida alta, lanzamos hechizo");
-        } else {
-            System.out.println("Objetivo débil, rematamos");
-        }
-    }
-
-    @Override
     protected Action elegirAccionConcreta(Action estrategia) {
         Action hechizo = new SpellCast("hechizo Savia tóxica");
         Action hechizoVeneno = new PoisonedAttackDecorator(hechizo);

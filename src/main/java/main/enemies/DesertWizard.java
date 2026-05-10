@@ -25,15 +25,6 @@ public class DesertWizard extends Wizard {
     }
 
     @Override
-    protected void evaluarSituacion() {
-        if (objetivo.getVida() >= 30) {
-            System.out.println("Objetivo con vida alta, lanzamos hechizo");
-        } else {
-            System.out.println("Objetivo débil, rematamos");
-        }
-    }
-
-    @Override
     protected Action elegirAccionConcreta(Action estrategia) {
         Action hechizo = new SpellCast("hechizo Tormenta de arena");
         Action hechizoPotenciado = new PowerfulAttackDecorator(hechizo);

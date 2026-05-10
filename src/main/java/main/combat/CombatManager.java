@@ -2,18 +2,24 @@ package main.combat;
 import main.abstracta.Character;
 import main.abstracta.Enemy;
 import main.actions.Action;
+import main.actions.Flee;
+import main.console.GameRenderer;
 import main.console.TurnMenu;
 
 public class CombatManager {
+
+    private GameRenderer gameRenderer;
     private Character player;
     private Enemy enemy;
     private TurnMenu turnMenu;
     private boolean jugadorBloqueando;
+    private boolean jugadorHuyo;
 
     public CombatManager(Character player, Enemy enemy, TurnMenu turnMenu){
         this.player = player;
         this.enemy = enemy;
         this.turnMenu = turnMenu;
+        this.gameRenderer = new GameRenderer();
     }
 
     public boolean startCombat(){
@@ -24,6 +30,7 @@ public class CombatManager {
                 if(!player.estaVivo()){
                     return false;
                 }
+                if(jugadorHuyo) return false;
                 turnoEnemigo();
                 if(!enemy.estaVivo()){
                     return true;
@@ -37,48 +44,60 @@ public class CombatManager {
                 if(!player.estaVivo()){
                     return false;
                 }
+                if(jugadorHuyo) return false;
             }
         }
     }
 
     private void turnoJugador(){
-        this.jugadorBloqueando = false;
+        jugadorBloqueando = false;
         player.getEstadoActual().applyEffect(player);
-        if(!player.getEstadoActual().canAct()){
-            return;
-        }
-        // TODO SE PASA EL MENÚ
-        Action accion = turnMenu.elegirAccion(player);
+        if(!player.estaVivo()) return;
+        if(!player.getEstadoActual().canAct()) return;
 
+        gameRenderer.renderCombatStatus(player, enemy);
+        Action accion = turnMenu.elegirAccion(player);
         CombatResult resultado = accion.executeAction(player, enemy);
 
+        double dano = 0;
         if(resultado.isBlocking()){
             jugadorBloqueando = true;
-        }else {
-            double dano = player.getFuerza() * (100.0 / (100.0 + enemy.getResistencia()));
+        } else if(accion instanceof Flee){
+            if(player.getAgilidad() >= 15){
+                gameRenderer.renderFlee(player.getNombre());
+                jugadorHuyo = true;
+                return;
+            }
+        } else {
+            dano = player.getFuerza() * (100.0 / (100.0 + enemy.getResistencia()));
             enemy.setVida(enemy.getVida() - dano);
         }
-        if(enemy.getEstadoActual().isReplaceable()&& resultado.getNewState() != null){
+
+        gameRenderer.renderActionResult(player.getNombre(), resultado, dano, true);
+
+        if(enemy.getEstadoActual().isReplaceable() && resultado.getNewState() != null){
             enemy.setEstadoActual(resultado.getNewState());
         }
     }
+
     private void turnoEnemigo(){
         enemy.getEstadoActual().applyEffect(enemy);
-        if(!enemy.getEstadoActual().canAct()){
-            return;
-        }
-        Action accion = enemy.nextAction();
+        if(!enemy.getEstadoActual().canAct()) return;
 
+        Action accion = enemy.nextAction();
         CombatResult resultado = accion.executeAction(enemy, player);
-        double dano = 0.0;
+
+        double dano = 0;
         if(jugadorBloqueando){
-            dano = Math.max(0, enemy.getFuerza()- player.getResistencia()*0.5);
-        }else{
+            dano = Math.max(0, enemy.getFuerza() - player.getResistencia() * 0.5);
+        } else {
             dano = enemy.getFuerza() * (100.0 / (100.0 + player.getResistencia()));
         }
-        player.setVida(player.getVida()-dano);
+        player.setVida(player.getVida() - dano);
 
-        if(player.getEstadoActual().isReplaceable()&& resultado.getNewState() != null){
+        gameRenderer.renderActionResult(enemy.getNombre(), resultado, dano, false);
+
+        if(player.getEstadoActual().isReplaceable() && resultado.getNewState() != null){
             player.setEstadoActual(resultado.getNewState());
         }
     }

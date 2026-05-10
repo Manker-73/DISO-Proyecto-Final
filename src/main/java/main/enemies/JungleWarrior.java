@@ -25,14 +25,6 @@ public class JungleWarrior extends Warrior {
         nextAction();
     }
 
-    @Override
-    protected void evaluarSituacion() {
-        if (objetivo.getVida() >= 30) {
-            System.out.println("Objetivo con vida alta, atacamos");
-        } else {
-            System.out.println("Objetivo débil, rematamos");
-        }
-    }
 
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
