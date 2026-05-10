@@ -1,4 +1,5 @@
 package main.decorator;
+
 import main.actions.Action;
 import main.abstracta.Character;
 import main.combat.CombatResult;

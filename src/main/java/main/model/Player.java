@@ -24,6 +24,7 @@ public class Player extends Character {
         this.nivel = nivel;
         this.experienciaActual = XP_DEF;
         this.experienciaNecesaria = XP_REQ_DEF;
+        this.vida = 100.0;
 
     }
 

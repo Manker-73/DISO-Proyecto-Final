@@ -40,6 +40,7 @@ public class GameController {
         this.ronda = 1;
         this.scanner = new Scanner(System.in);
         this.enemiesRound.clear();
+       // System.out.println("DEBUG vida: " + this.player.getVida());
     }
     public void empezarPartida(){
         while(player.estaVivo()){

@@ -12,7 +12,7 @@ public class CombatManager {
     public CombatManager(Character player, Enemy enemy, TurnMenu turnMenu){
         this.player = player;
         this.enemy = enemy;
-        this.turnMenu = this.turnMenu;
+        this.turnMenu = turnMenu;
     }
 
     public boolean startCombat(){
@@ -50,8 +50,8 @@ public class CombatManager {
 
         CombatResult resultado = accion.executeAction(player, enemy);
 
-        double daño = resultado.getDamage() * CombatCalculator.getInstance().calculateDamage(player, enemy);
-        enemy.setVida(enemy.getVida() - daño);
+        double dano = resultado.getDamage() * CombatCalculator.getInstance().calculateDamage(player, enemy);
+        enemy.setVida(enemy.getVida() - dano);
 
         if(enemy.getEstadoActual().isReplaceable()){
             enemy.setEstadoActual(resultado.getNewState());
@@ -65,14 +65,14 @@ public class CombatManager {
         Action accion = enemy.nextAction();
 
         CombatResult resultado = accion.executeAction(enemy, player);
-        double daño = 0;
+        double dano = 0;
         if(resultado.isBlocking()){
             double block = CombatCalculator.getInstance().calculateBlock(player);
-            daño = resultado.getDamage() * (CombatCalculator.getInstance().calculateDamage(enemy, player) - block);
+            dano = resultado.getDamage() * (CombatCalculator.getInstance().calculateDamage(enemy, player) - block);
         } else{
-            daño = resultado.getDamage() * CombatCalculator.getInstance().calculateDamage(enemy, player);
+            dano = resultado.getDamage() * CombatCalculator.getInstance().calculateDamage(enemy, player);
         }
-        player.setVida(player.getVida() - daño);
+        player.setVida(player.getVida() - dano);
 
         if(player.getEstadoActual().isReplaceable()){
             player.setEstadoActual(resultado.getNewState());
