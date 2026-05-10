@@ -17,6 +17,15 @@ public class TurnMenu {
         this.scanner = scanner;
     }
 
+    private String xpBar(Double xpActual, Double xpNecesaria) {
+        if (xpNecesaria == null || xpNecesaria <= 0) return "??";
+        int filled = (int) Math.round((xpActual / xpNecesaria) * 8);
+        filled = Math.max(0, Math.min(8, filled));
+        return ConsoleUI.MAGENTA + "█".repeat(filled) + ConsoleUI.RESET
+                + "░".repeat(8 - filled)
+                + "  " + xpActual.intValue() + "/" + xpNecesaria.intValue();
+    }
+
     public Action elegirAccion(Character player) {
         printTurnHeader(player);
         printOptions(player);
@@ -31,9 +40,17 @@ public class TurnMenu {
         String vidaStr = healthBar(player.getVida(), player.getMaxVida());
         String estado  = getEstado(player);
 
+        String nivelXP = "";
+        if (player instanceof main.model.Player p) {
+            String xpBar = xpBar(p.getExperienciaActual(), p.getExperienciaNecesaria());
+            nivelXP = "  |  Nv." + ConsoleUI.BOLD + p.getNivel() + ConsoleUI.RESET
+                    + "  XP: " + xpBar;
+        }
+
         System.out.println("  " + ConsoleUI.BOLD + player.getNombre() + ConsoleUI.RESET
                 + "  |  Vida: " + vidaStr
-                + "  |  Estado: " + ConsoleUI.YELLOW + estado + ConsoleUI.RESET);
+                + "  |  Estado: " + ConsoleUI.YELLOW + estado + ConsoleUI.RESET
+                + nivelXP);
     }
 
     private void printOptions(Character player) {
@@ -45,10 +62,10 @@ public class TurnMenu {
         System.out.println();
         System.out.println("  " + ConsoleUI.WHITE + "1." + ConsoleUI.RESET
                 + " Atacar con espada    "
-                + ConsoleUI.GREEN + "(dano = Fuerza)" + ConsoleUI.RESET);
+                + ConsoleUI.GREEN + "(daño = Fuerza)" + ConsoleUI.RESET);
         System.out.println("  " + ConsoleUI.WHITE + "2." + ConsoleUI.RESET
                 + " Bloquear             "
-                + ConsoleUI.GREEN + "(reducir dano recibido)" + ConsoleUI.RESET);
+                + ConsoleUI.GREEN + "(reducir daño recibido)" + ConsoleUI.RESET);
         System.out.println("  " + ConsoleUI.WHITE + "3." + ConsoleUI.RESET
                 + " Curar                "
                 + ConsoleUI.GREEN + "(+15 de vida)" + ConsoleUI.RESET);
