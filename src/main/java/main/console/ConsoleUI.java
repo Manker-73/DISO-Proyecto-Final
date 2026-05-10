@@ -25,11 +25,13 @@ public class ConsoleUI {
     private final Scanner          scanner;
     private final ScoreManager     scoreManager;
     private final CharacterCreator characterCreator;
+    private final GameController gameController;
 
     public ConsoleUI() {
         this.scanner           = new Scanner(System.in);
         this.scoreManager      = new ScoreManager();
         this.characterCreator  = new CharacterCreator(scanner);
+        this.gameController = GameController.getInstance();
     }
 
 
@@ -63,7 +65,7 @@ public class ConsoleUI {
         gc.resetPartida(player, factory);
         gc.empezarPartida();
 
-        int puntuacion = player.getNivel() * 100;
+        int puntuacion = gameController.getRonda() * 100;
         scoreManager.saveScore(player.getNombre(), puntuacion);
 
         System.out.println(RED + BOLD + "\n  Has caído en combate..." + RESET);

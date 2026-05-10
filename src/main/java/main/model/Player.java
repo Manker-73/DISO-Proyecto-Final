@@ -10,7 +10,6 @@ public class Player extends Character {
     public static final Double XP_DEF = 0.0;
     public static final Double XP_REQ_DEF = 100.0;
 
-
     private World world;
     private Integer nivel;
     private Double experienciaActual;

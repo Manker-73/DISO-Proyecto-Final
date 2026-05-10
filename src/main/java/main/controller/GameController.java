@@ -141,4 +141,8 @@ public class GameController {
     public void terminarPartida(){
         gameRenderer.renderGameOver(player.getNombre(), player.getNivel() * 100);
     }
+
+    public int getRonda() {
+        return ronda;
+    }
 }
