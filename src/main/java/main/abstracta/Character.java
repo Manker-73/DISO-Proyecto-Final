@@ -80,5 +80,8 @@ public abstract class Character {
     public void setEstadoActual(CharacterState estadoActual) {
         this.estadoActual = estadoActual;
     }
+    public void setMaxVida(Double maxVida){
+        this.maxVida = maxVida;
+    }
     public Double getMaxVida(){return maxVida;}
 }

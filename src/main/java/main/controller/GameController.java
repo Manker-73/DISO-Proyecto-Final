@@ -5,6 +5,7 @@ import main.abstracta.Warrior;
 import main.abstracta.Wizard;
 import main.abstracta.Warrior;
 import main.combat.CombatManager;
+import main.console.ConsoleUI;
 import main.console.GameRenderer;
 import main.console.TurnMenu;
 import main.factory.EnemyFactory;
@@ -59,6 +60,10 @@ public class GameController {
     public void empezarRonda(){
         System.out.println("\n  Ronda " + ronda);
 
+        // Dificultad progresiva cada 3 rondas
+        int nivelDificultad = (ronda - 1) / 3;
+        double multiplicador = 1.0 + (nivelDificultad * 0.3);
+
         EnemyStrategy strategy = ronda <= 2
                 ? new DefensiveStrategy()
                 : ronda <= 4
@@ -72,6 +77,12 @@ public class GameController {
             enemy = enemyFactory.createWarrior(strategy);
         }
 
+        // Aplicar multiplicador de dificultad
+        enemy.setFuerza(enemy.getFuerza() * multiplicador);
+        enemy.setResistencia(enemy.getResistencia() * multiplicador);
+        enemy.setVida(enemy.getVida() * multiplicador);
+        enemy.setMaxVida(enemy.getMaxVida() * multiplicador);
+
         if(enemy instanceof Warrior) ((Warrior)enemy).setObjetivo(player);
         if(enemy instanceof Wizard)  ((Wizard)enemy).setObjetivo(player);
 
@@ -79,9 +90,16 @@ public class GameController {
         CombatManager cm = new CombatManager(player, enemy, turnMenu);
 
         if(cm.startCombat()){
-            player.recibirExperiencia(50.0 * ronda);
+            player.recibirExperiencia(50.0 * ronda * multiplicador);
             finalizarRonda();
             siguienteRonda();
+
+            if(ronda % 3 == 0){
+                player.setVida(player.getMaxVida());
+                System.out.println(ConsoleUI.GREEN + ConsoleUI.BOLD
+                        + "\n  ¡Descansas y recuperas toda tu vida!"
+                        + ConsoleUI.RESET);
+            }
         }
     }
 
