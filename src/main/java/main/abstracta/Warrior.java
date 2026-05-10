@@ -16,7 +16,7 @@ public abstract class Warrior extends Enemy{
     }
 
     public Warrior(Integer alcance,  World world, EnemyStrategy enemyStrategy){
-        super(world,enemyStrategy);
+        super(world, enemyStrategy);
         this.alcance = alcance;
     }
     public abstract void atacarCuerpoACuerpo();
