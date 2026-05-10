@@ -3,12 +3,15 @@ package main.controller;
 import main.abstracta.Enemy;
 import main.abstracta.Warrior;
 import main.abstracta.Wizard;
-import main.abstracta.Warrior;
 import main.combat.CombatManager;
 import main.console.ConsoleUI;
 import main.console.GameRenderer;
 import main.console.TurnMenu;
+import main.enums.World;
+import main.factory.DesertEnemyFactory;
 import main.factory.EnemyFactory;
+import main.factory.JungleEnemyFactory;
+import main.factory.SeaEnemyFactory;
 import main.model.Player;
 import main.strategy.AggressiveStrategy;
 import main.strategy.DefensiveStrategy;
@@ -59,6 +62,29 @@ public class GameController {
 
     public void empezarRonda(){
         System.out.println("\n  Ronda " + ronda);
+
+        if(ronda == 1){
+            System.out.println("  Mundo: " + ConsoleUI.YELLOW + player.getWorld() + ConsoleUI.RESET);
+        } else {
+            int mundoAleatorio = (int)(Math.random() * 3);
+            switch(mundoAleatorio){
+                case 0 -> {
+                    enemyFactory = new JungleEnemyFactory();
+                    player.setWorld(World.JUNGLE);
+                    System.out.println("  Mundo: " + ConsoleUI.YELLOW + "JUNGLE" + ConsoleUI.RESET);
+                }
+                case 1 -> {
+                    enemyFactory = new SeaEnemyFactory();
+                    player.setWorld(World.SEA);
+                    System.out.println("  Mundo: " + ConsoleUI.YELLOW + "SEA" + ConsoleUI.RESET);
+                }
+                case 2 -> {
+                    enemyFactory = new DesertEnemyFactory();
+                    player.setWorld(World.DESERT);
+                    System.out.println("  Mundo: " + ConsoleUI.YELLOW + "DESERT" + ConsoleUI.RESET);
+                }
+            }
+        }
 
         int nivelDificultad = (ronda - 1) / 3;
         double multiplicador = 1.0 + (nivelDificultad * 0.3);
