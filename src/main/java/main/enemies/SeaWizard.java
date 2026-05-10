@@ -2,7 +2,7 @@ package main.enemies;
 
 import main.abstracta.Wizard;
 import main.actions.Action;
-import main.actions.SpellCast;
+import main.actions.Attack;
 import main.decorator.QuickAttackDecorator;
 import main.enums.World;
 import main.strategy.EnemyStrategy;
@@ -27,7 +27,7 @@ public class SeaWizard extends Wizard {
 
     @Override
     protected Action elegirAccionConcreta(Action estrategia) {
-        Action hechizo = new SpellCast("hechizo Asfixiador");
+        Action hechizo = new Attack();
         Action hechizoRapido = new QuickAttackDecorator(hechizo);
         return hechizoRapido;
     }
